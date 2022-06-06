@@ -1,0 +1,2383 @@
+{
+	"info": {
+		"_postman_id": "412b1ffa-87e2-4e1e-8be2-13acdd65e674",
+		"name": "Invygo",
+		"description": "# **Staff Scheduling application**\n\n##### This application allows users to manage staff schedules.\n\n###### You can find the list of api endpoints in their respective folders\n\n*   **Auth**\n    *   signup\n    *   login\n*   **User**\n    *   get users\n    *   get user\n    *   create user\n    *   update user\n    *   delete user\n    *   list users by accumulated work hours\n*   **Schedule**\n    *   get schedules\n    *   get schedule\n    *   create schedule\n    *   update schedule\n    *   delete schedule",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3460501"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ayman Abukhalifa\",\n    \"email\": \"ayman@example.com\",\n    \"password\": \"abcd1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Use this endpoint for user creation"
+					},
+					"response": [
+						{
+							"name": "signup example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ayman Abukhalifa\",\n    \"email\": \"ayman@example.com\",\n    \"password\": \"abcd1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/signup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-Ag6U/v5UFTg4tjGYm+51dHl1l20\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 13:34:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"name\": \"Ayman Abukhalifa\",\n        \"email\": \"ayman@example.com\",\n        \"password\": \"$2a$10$C9y.QBhpSHqIv5P55CuevepiVxpOAeqwxUnuLYauKEVTCvtdzkcdi\",\n        \"id\": 3,\n        \"createdAt\": \"2022-06-03T09:34:55.615Z\",\n        \"updatedAt\": \"2022-06-03T09:34:55.615Z\"\n    },\n    \"message\": \"signup\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Save the token in the environment\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.data.tokenData) {",
+									"        pm.environment.set(\"token\", jsonData.data.tokenData.token);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@invygo.com\",\n    \"password\": \"invyg0P@ss\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Use this endpoint to retrieve the user details and a token"
+					},
+					"response": [
+						{
+							"name": "login example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@invygo.com\",\n    \"password\": \"invyg0P@ss\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "437"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b5-RLvCbsSaC0cDX/s77B598Qlc0to\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:22:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"tokenData\": {\n            \"expiresIn\": 3600,\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjU0NDM1MzQ4LCJleHAiOjE2NTQ0Mzg5NDh9.I4UGvrC0Gb4g0rD1TBip_q_8vy4sGD-xTIcrdfTjAMU\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"admin\",\n            \"email\": \"admin@invygo.com\",\n            \"password\": \"$2a$10$OQ63xKt7NwiaKIEKg/dEnefvuvD31bdzxq3hE5Tj5VNmDSAurQrZW\",\n            \"createdAt\": \"2022-06-05T09:22:23.672Z\",\n            \"updatedAt\": \"2022-06-05T09:22:23.672Z\"\n        }\n    },\n    \"message\": \"login\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "Use this route to fetch all the users"
+					},
+					"response": [
+						{
+							"name": "Get Users Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "654"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28e-bvuLAQlmNLIhsCvWcK6xPg5GNyQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:38:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"admin\",\n            \"email\": \"admin@invygo.com\",\n            \"password\": \"$2a$10$OQ63xKt7NwiaKIEKg/dEnefvuvD31bdzxq3hE5Tj5VNmDSAurQrZW\",\n            \"createdAt\": \"2022-06-05T09:22:23.672Z\",\n            \"updatedAt\": \"2022-06-05T09:22:23.672Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Ayman Abukhalifa\",\n            \"email\": \"ayman@example.com\",\n            \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n            \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n            \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Steve\",\n            \"email\": \"steve@example.com\",\n            \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n            \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n            \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n        }\n    ],\n    \"message\": \"Get Users\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/{{userId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Use this endpoint to fetch the user by id"
+					},
+					"response": [
+						{
+							"name": "Get User Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/{{userId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "713"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c9-3U++iWrnZON9Q4cC6egSF3Qr/3c\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:38:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Ayman Abukhalifa\",\n        \"email\": \"ayman@example.com\",\n        \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n        \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n        \"updatedAt\": \"2022-06-05T09:23:23.881Z\",\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"STAFF_USER\",\n            \"createdAt\": \"2022-06-05T09:22:23.551Z\",\n            \"updatedAt\": \"2022-06-05T09:22:23.551Z\",\n            \"permissions\": [\n                {\n                    \"id\": 2,\n                    \"title\": \"View_Own_Schedules\",\n                    \"createdAt\": \"2022-06-05T09:22:23.393Z\",\n                    \"updatedAt\": \"2022-06-05T09:22:23.393Z\"\n                },\n                {\n                    \"id\": 5,\n                    \"title\": \"View_Schedules\",\n                    \"createdAt\": \"2022-06-05T09:22:23.396Z\",\n                    \"updatedAt\": \"2022-06-05T09:22:23.396Z\"\n                },\n                {\n                    \"id\": 6,\n                    \"title\": \"View_Own_User\",\n                    \"createdAt\": \"2022-06-05T09:22:23.399Z\",\n                    \"updatedAt\": \"2022-06-05T09:22:23.399Z\"\n                }\n            ]\n        }\n    },\n    \"message\": \"Get User\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dave\",\n    \"email\": \"dave@example.com\",\n    \"password\": \"abcd1234\",\n    \"roleId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "Use this endpoint to create a new user with the desired role\n(Admin ONLY ACCESS)"
+					},
+					"response": [
+						{
+							"name": "Create User Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dave\",\n    \"email\": \"dave@example.com\",\n    \"password\": \"abcd1234\",\n    \"roleId\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "343"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"157-sa8OyJC6WWOBrQNQ8htq9oWYKHM\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:39:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"name\": \"Dave\",\n        \"email\": \"dave@example.com\",\n        \"password\": \"$2a$10$s3p4et4BfWtv7JFK0LExh.bynKDmw.yzP0QfQIf74S61jESz0V9Ii\",\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"ADMIN\",\n            \"createdAt\": \"2022-06-05T09:22:23.572Z\",\n            \"updatedAt\": \"2022-06-05T09:22:23.572Z\"\n        },\n        \"id\": 4,\n        \"createdAt\": \"2022-06-05T09:39:11.930Z\",\n        \"updatedAt\": \"2022-06-05T09:39:11.930Z\"\n    },\n    \"message\": \"Create User\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dave Lee\",\n    \"email\": \"davelee@example.com\",\n    \"password\": \"abcd1234\",\n    \"roleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/{{userId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Use this endpoint to update the user info\n\n(Admin ONLY ACCESS)"
+					},
+					"response": [
+						{
+							"name": "Update User Example",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dave Lee\",\n    \"email\": \"davelee@example.com\",\n    \"password\": \"abcd1234\",\n    \"roleId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/{{userId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f1-ayh6xMGQcfOpd++qT79bBjHYXOs\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:40:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Dave Lee\",\n        \"email\": \"davelee@example.com\",\n        \"password\": \"$2a$10$Hftbn9eC5Pw3IQpFAuioU.afut2UxhxvWkToDCwj6EC7loQf8JYGi\",\n        \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n        \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n    },\n    \"message\": \"Update User\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/{{userId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Use this endpoint to delete a user by its id"
+					},
+					"response": []
+				},
+				{
+					"name": "List Users By Accumulated Work Hours",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/list-by-accumulated-work-hours?startDate=2022-06-10&endDate=2022-06-30",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"list-by-accumulated-work-hours"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2022-06-10"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-06-30"
+								}
+							]
+						},
+						"description": "Use this endpoint to fetch users by accumulated work hours per arbitrary period\n(up to 1 year)"
+					},
+					"response": [
+						{
+							"name": "List Users By Accumulated Work Hours Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/list-by-accumulated-work-hours?startDate=2022-06-10&endDate=2022-06-30",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"list-by-accumulated-work-hours"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2022-06-30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-TLBvioJQkx0+vWqVDpwV9QU+Q8k\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:36:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Ayman Abukhalifa\",\n            \"accumulatedWorkHours\": \"46\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Steve\",\n            \"accumulatedWorkHours\": \"20\"\n        }\n    ],\n    \"message\": \"Get Users List By Accumulated Work Hours\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Schedule",
+			"item": [
+				{
+					"name": "Get Schedules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedule",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedule"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2022-06-13",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2023-12-01",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "4",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Use this endpoint to fetch all schedules in the system \nOr to filter by the start date and/or end date of the schedule\nAlso you can filter by the schedule assigned user id"
+					},
+					"response": [
+						{
+							"name": "Get Schedules Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-13",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2023-12-01",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "4",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1160-D5rPWqAIdzm9MhKHeLgpYyAeClc\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:31:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n            \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:21.069Z\",\n            \"updatedAt\": \"2022-06-05T09:25:21.069Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:25.026Z\",\n            \"updatedAt\": \"2022-06-05T09:25:25.026Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"date\": \"2022-06-13\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:28.920Z\",\n            \"updatedAt\": \"2022-06-05T09:25:28.920Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"date\": \"2022-06-14\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:33.100Z\",\n            \"updatedAt\": \"2022-06-05T09:25:33.100Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"date\": \"2022-06-15\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:38.008Z\",\n            \"updatedAt\": \"2022-06-05T09:25:38.008Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 7,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:33.363Z\",\n            \"updatedAt\": \"2022-06-05T09:26:33.363Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 8,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:39.080Z\",\n            \"updatedAt\": \"2022-06-05T09:26:39.080Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 9,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:43.787Z\",\n            \"updatedAt\": \"2022-06-05T09:26:43.787Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 10,\n            \"date\": \"2022-07-15\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:51.256Z\",\n            \"updatedAt\": \"2022-06-05T09:26:51.256Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 11,\n            \"date\": \"2022-08-20\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:59.198Z\",\n            \"updatedAt\": \"2022-06-05T09:26:59.198Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 13,\n            \"date\": \"2022-06-20\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:27:34.614Z\",\n            \"updatedAt\": \"2022-06-05T09:27:34.614Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 14,\n            \"date\": \"2022-06-24\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:27:43.608Z\",\n            \"updatedAt\": \"2022-06-05T09:27:43.608Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        }\n    ],\n    \"message\": \"Get Schedules\"\n}"
+						},
+						{
+							"name": "Get Schedules Past One Year",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule?startDate=2022-06-10&endDate=2023-06-20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-06-20"
+										},
+										{
+											"key": "userId",
+											"value": "4",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6c-VsonrSfpjbSY23ychaDmPGU0Ngw\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:32:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Sorry but you can only view schedules up to a year and your end date: 2023-06-20 has past that\"\n}"
+						},
+						{
+							"name": "Get Schedules By Period",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule?startDate=2022-06-10&endDate=2022-06-20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2022-06-20"
+										},
+										{
+											"key": "userId",
+											"value": "4",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d73-6IGuSRy7P4G35wMzGh317YMZseU\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:33:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n            \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:21.069Z\",\n            \"updatedAt\": \"2022-06-05T09:25:21.069Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:25.026Z\",\n            \"updatedAt\": \"2022-06-05T09:25:25.026Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"date\": \"2022-06-13\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:28.920Z\",\n            \"updatedAt\": \"2022-06-05T09:25:28.920Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"date\": \"2022-06-14\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:33.100Z\",\n            \"updatedAt\": \"2022-06-05T09:25:33.100Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"date\": \"2022-06-15\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:38.008Z\",\n            \"updatedAt\": \"2022-06-05T09:25:38.008Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 7,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:33.363Z\",\n            \"updatedAt\": \"2022-06-05T09:26:33.363Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 8,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:39.080Z\",\n            \"updatedAt\": \"2022-06-05T09:26:39.080Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 9,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:26:43.787Z\",\n            \"updatedAt\": \"2022-06-05T09:26:43.787Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        },\n        {\n            \"id\": 13,\n            \"date\": \"2022-06-20\",\n            \"shiftLength\": 4,\n            \"createdAt\": \"2022-06-05T09:27:34.614Z\",\n            \"updatedAt\": \"2022-06-05T09:27:34.614Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Steve\",\n                \"email\": \"steve@example.com\",\n                \"password\": \"$2a$10$K9/edMl5i7OAd5BwjZBMUuBa6PRsNG6GGxMBA9wumw9PCTGVwfMn.\",\n                \"createdAt\": \"2022-06-05T09:26:14.323Z\",\n                \"updatedAt\": \"2022-06-05T09:26:14.323Z\"\n            }\n        }\n    ],\n    \"message\": \"Get Schedules\"\n}"
+						},
+						{
+							"name": "Get Schedules By User ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule?userId=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-10",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2022-06-20",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"83a-VtVl0rgYJVte4NMv92huAzKK1mE\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:33:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n            \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:21.069Z\",\n            \"updatedAt\": \"2022-06-05T09:25:21.069Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:25.026Z\",\n            \"updatedAt\": \"2022-06-05T09:25:25.026Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"date\": \"2022-06-13\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:28.920Z\",\n            \"updatedAt\": \"2022-06-05T09:25:28.920Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"date\": \"2022-06-14\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:33.100Z\",\n            \"updatedAt\": \"2022-06-05T09:25:33.100Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"date\": \"2022-06-15\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:38.008Z\",\n            \"updatedAt\": \"2022-06-05T09:25:38.008Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        }\n    ],\n    \"message\": \"Get Schedules\"\n}"
+						},
+						{
+							"name": "Get Schedules By Period & User ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule?startDate=2022-06-10&endDate=2022-06-20&userId=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-10"
+										},
+										{
+											"key": "endDate",
+											"value": "2022-06-20"
+										},
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"83a-VtVl0rgYJVte4NMv92huAzKK1mE\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:34:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"date\": \"2022-06-10\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n            \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"date\": \"2022-06-11\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:21.069Z\",\n            \"updatedAt\": \"2022-06-05T09:25:21.069Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"date\": \"2022-06-12\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:25.026Z\",\n            \"updatedAt\": \"2022-06-05T09:25:25.026Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 4,\n            \"date\": \"2022-06-13\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:28.920Z\",\n            \"updatedAt\": \"2022-06-05T09:25:28.920Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"date\": \"2022-06-14\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:33.100Z\",\n            \"updatedAt\": \"2022-06-05T09:25:33.100Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"date\": \"2022-06-15\",\n            \"shiftLength\": 8,\n            \"createdAt\": \"2022-06-05T09:25:38.008Z\",\n            \"updatedAt\": \"2022-06-05T09:25:38.008Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"Ayman Abukhalifa\",\n                \"email\": \"ayman@example.com\",\n                \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n                \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n                \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n            }\n        }\n    ],\n    \"message\": \"Get Schedules\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedule/{{scheduleId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedule",
+								"{{scheduleId}}"
+							]
+						},
+						"description": "use this endpoint to fetch a specific schedule details by its id"
+					},
+					"response": [
+						{
+							"name": "Get Schedule Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/schedule/{{scheduleId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule",
+										"{{scheduleId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "378"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17a-IteuWaPjcvxsOkp6tOiC0NLO4mE\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:25:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"date\": \"2022-06-10\",\n        \"shiftLength\": 8,\n        \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n        \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Ayman Abukhalifa\",\n            \"email\": \"ayman@example.com\",\n            \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n            \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n            \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n        }\n    },\n    \"message\": \"Get Schedule\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2022-06-10\",\n    \"shiftLength\": 8,\n    \"userId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schedule",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedule"
+							]
+						},
+						"description": "Use this endpoint to create a schedule"
+					},
+					"response": [
+						{
+							"name": "Create Schedule Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"date\": \"2022-06-10\",\n    \"shiftLength\": 8,\n    \"userId\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/schedule",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "381"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17d-GPRb9dVsrnahzvAusib4elxQ7iY\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:24:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"date\": \"2022-06-10\",\n        \"shiftLength\": 8,\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Ayman Abukhalifa\",\n            \"email\": \"ayman@example.com\",\n            \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n            \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n            \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n        },\n        \"id\": 1,\n        \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n        \"updatedAt\": \"2022-06-05T09:24:28.451Z\"\n    },\n    \"message\": \"Create Schedule\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2022-06-10\",\n    \"shiftLength\": 8,\n    \"userId\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schedule/{{scheduleId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedule",
+								"{{scheduleId}}"
+							]
+						},
+						"description": "Use this endpoint to update a schedule"
+					},
+					"response": [
+						{
+							"name": "Update Schedule Example",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"date\": \"2022-06-10\",\n    \"shiftLength\": 6,\n    \"userId\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/schedule/{{scheduleId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"schedule",
+										"{{scheduleId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "381"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17d-Tq41+mNvlDmVLBDRn63om4MYzTg\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jun 2022 13:34:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"date\": \"2022-06-10\",\n        \"shiftLength\": 6,\n        \"createdAt\": \"2022-06-05T09:24:28.451Z\",\n        \"updatedAt\": \"2022-06-05T09:24:28.451Z\",\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Ayman Abukhalifa\",\n            \"email\": \"ayman@example.com\",\n            \"password\": \"$2a$10$5Ngw05MJ.LabdepW/uD7.udLcHQBPCCAKcKbFl.nizrAW6SvZ0oRK\",\n            \"createdAt\": \"2022-06-05T09:23:23.881Z\",\n            \"updatedAt\": \"2022-06-05T09:23:23.881Z\"\n        }\n    },\n    \"message\": \"Update Schedule\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedule/{{scheduleId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedule",
+								"{{scheduleId}}"
+							]
+						},
+						"description": "Use this endpoint to delete a schedule"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

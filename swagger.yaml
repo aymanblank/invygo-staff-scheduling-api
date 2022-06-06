@@ -1,0 +1,377 @@
+paths:
+# [POST] signup
+  /signup:
+    post:
+      tags:
+      - auth
+      summary: Sign up a user
+      parameters:
+      - name: body
+        in: body
+        description: user data
+        required: true
+        schema:
+          $ref: '#/definitions/user'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] login
+  /login:
+    post:
+      tags:
+      - auth
+      summary: Login User
+      parameters:
+      - name: body
+        in: body
+        description: user auth data
+        required: true
+        schema:
+          $ref: '#/definitions/user-auth-data'
+      responses:
+        200:
+          description: 'Ok'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] user
+  /user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Find All Users
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] user
+    post:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Add User
+      parameters:
+      - name: body
+        in: body
+        description: user data
+        required: true
+        schema:
+          $ref: '#/definitions/user'
+      responses:
+        200:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] user/id
+  /user/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Find User By Id
+      parameters:
+      - name: id
+        in: path
+        description: User Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] user/id
+    put:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Update User By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/user'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] user/id
+    delete:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Delete User By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] user/list-by-accumulated-work-hours
+  /list-by-accumulated-work-hours:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - user
+      summary: Find A List Of Users By Accumulated Work Hours
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        description: schedule starting period
+        schema:
+          type: date
+      - name: endDate
+        in: query
+        required: false
+        description: schedule ending period
+        schema:
+          type: date
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        500:
+          description: 'Server Error'
+
+# [GET] schedule
+  /schedule:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - schedule
+      summary: Find All Schedules
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        description: schedule starting period
+        schema:
+          type: date
+      - name: endDate
+        in: query
+        required: false
+        description: schedule ending period
+        schema:
+          type: date
+      - name: userId
+        in: query
+        required: false
+        description: schedule user id
+        schema:
+          type: integer
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        500:
+          description: 'Server Error'
+
+# [POST] schedule
+    post:
+      security:
+        - Bearer: []
+      tags:
+      - schedule
+      summary: Add Schedule
+      parameters:
+      - name: body
+        in: body
+        description: schedule data
+        required: true
+        schema:
+          $ref: '#/definitions/schedule'
+      responses:
+        200:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] schedule/id
+  /schedule/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - schedule
+      summary: Find Schedule By Id
+      parameters:
+      - name: id
+        in: path
+        description: Schedule Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] schedule/id
+    put:
+      security:
+        - Bearer: []
+      tags:
+      - schedule
+      summary: Update Schedule By Id
+      parameters:
+      - name: id
+        in: path
+        description: schedule Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: schedule Data
+        required: true
+        schema:
+          $ref: '#/definitions/schedule'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] schedule/id
+    delete:
+      security:
+        - Bearer: []
+      tags:
+      - schedule
+      summary: Delete Schedule By Id
+      parameters:
+      - name: id
+        in: path
+        description: schedule Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  user:
+    type: object
+    required:
+        - name
+        - email
+        - password
+    optional:
+        - roleId
+    properties:
+      name:
+        type: string
+        description: User Name
+      email:
+        type: string
+        description: User Email
+      password:
+        type: string
+        description: User Password
+      roleId:
+        type: integer
+        description: User Role Id
+  user-auth-data:
+    type: object
+    required:
+        - email
+        - password
+    properties:
+      email:
+        type: string
+        description: User Email
+      password:
+        type: string
+        description: User Password
+  schedule:
+    type: object
+    required:
+        - date
+        - shiftLength
+    optional:
+        - userId
+    properties:
+      date:
+        type: string
+        description: Scheduled For This Date
+      shiftLength:
+        type: integer
+        description: The Shift Length In Hours
+      userId:
+        type: integer
+        description: The User Id Of The Schedule Owner
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+schemes:
+ - https
+ - http
